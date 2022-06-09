@@ -1,0 +1,2 @@
+eval St (conj X Y) true :- eval St X true, eval St Y false.
+? true ; false
