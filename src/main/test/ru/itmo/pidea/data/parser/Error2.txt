@@ -1,0 +1,9 @@
+PLang File(0,24)
+  PsiElement(PLangTokenType.IDENTIFIER_DEF)('rel1')(0,4)
+  PsiElement(PLangTokenType.TRUE)('true')(5,9)
+  PsiElement(PLangTokenType.FALSE)('false')(10,15)
+  PsiElement(PLangTokenType.SEPARATOR)(':-')(16,18)
+  PsiElement(PLangTokenType.TRUE)('true')(19,23)
+  PsiElement(PLangTokenType.DOT)('.')(23,24)
+  PsiErrorElement:PLangTokenType.IDENTIFIER_DEF or PLangTokenType.QUESTION expected(24,24)
+    <empty list>

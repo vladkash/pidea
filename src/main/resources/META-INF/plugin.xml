@@ -1,0 +1,40 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>ru.itmo.pidea</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>Pidea</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor>vladkash</vendor>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.java</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <fileType
+            name="PLang File"
+            implementationClass="ru.itmo.pidea.lang.PLangFileType"
+            fieldName="INSTANCE"
+            language="PLang"
+            extensions="plang"/>
+
+        <lang.parserDefinition
+            language="PLang"
+            implementationClass="ru.itmo.pidea.lang.PLangParserDefinition"/>
+
+        <lang.syntaxHighlighterFactory
+            language="PLang"
+            implementationClass="ru.itmo.pidea.lang.PLangSyntaxHighlighterFactory"/>
+
+        <completion.contributor
+            language="PLang"
+            implementationClass="ru.itmo.pidea.lang.PLangCompletionContributor"/>
+    </extensions>
+</idea-plugin>

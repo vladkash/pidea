@@ -1,0 +1,40 @@
+{
+  parserClass="ru.itmo.pidea.lang.psi.PLangParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="PLang"
+  psiImplClassSuffix="Impl"
+  psiPackage="ru.itmo.pidea.lang.psi"
+  psiImplPackage="ru.itmo.pidea.lang.psi.impl"
+
+  elementTypeHolderClass="ru.itmo.pidea.lang.psi.PLangTypes"
+  elementTypeClass="ru.itmo.pidea.lang.psi.PLangElementType"
+  tokenTypeClass="ru.itmo.pidea.lang.psi.PLangTokenType"
+
+  extends(".*goal")=goal
+
+  psiImplUtilClass="ru.itmo.pidea.lang.psi.impl.PLangPsiImplUtil"
+}
+pLangFile ::= relation* QUESTION goal DOT
+
+relation ::= relation_def [ SEPARATOR goal ] DOT {methods=[getName]}
+
+relation_def ::= IDENTIFIER_DEF arg*
+
+goal ::= disjunction_goal | conjunction_goal | primary_group
+
+private primary_group ::= atom_goal | paren_goal
+
+disjunction_goal ::= goal SEMICOLON goal { rightAssociative=true }
+
+conjunction_goal ::= goal COMMA goal { rightAssociative=true }
+
+paren_goal ::= LPAREN goal RPAREN
+
+relation_call ::= IDENTIFIER_CALL arg* { methods=[getReference] }
+
+atom_goal ::= TRUE | FALSE | relation_call | LPAREN atom_goal RPAREN
+
+arg ::= VARIABLE | atom_goal
+
